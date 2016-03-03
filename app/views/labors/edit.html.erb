@@ -1,0 +1,32 @@
+<div style="width:60%; margin:0 auto;">
+<h1>Editar Tarea</h1>
+<%= form_for(@labor) do |l| %>
+	<% @labor.errors.full_messages.each do |message|%>
+		<div class="be-alert white">*<%= message %></div>
+		<%end%>
+		<div class="field">
+			<%= l.text_field:name, placeholder: "Nombre", class:"form-control"%>
+		</div>
+		<div class="field">
+			<%= l.text_area:description, placeholder: "Description Tarea", class:"form-control"%>
+		</div>
+		<div class="field">
+			<%= l.text_field:indicator_description, placeholder: "Descripcion de Indicador", class:"form-control"%>
+		</div>
+		<div class="field">
+			<%= l.text_field:indicator, placeholder: "Cantidad de Indicador", class:"form-control"%>
+		</div>
+		<div class="field">
+			<%= l.text_field:initiation, placeholder: "Fecha de Inicio", class:"form-control"%>
+		</div>
+		<div class="field">
+			<%= l.text_field:ending, placeholder: "Fecha de Finalizacion", class:"form-control"%>
+		</div>
+		
+		<%= l.hidden_field:area_aim_id %>
+				
+		<div class="field">
+			<%= l.submit "Guardar", class:"btn large-padding be-red" %>
+		</div>
+	<%end%>
+</div>

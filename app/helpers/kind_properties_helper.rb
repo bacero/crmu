@@ -1,0 +1,2 @@
+module KindPropertiesHelper
+end

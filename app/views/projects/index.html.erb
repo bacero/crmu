@@ -1,0 +1,22 @@
+<div style="width:80%; margin:0 auto;">
+	<div class="row center-xs">
+    <div class="col-xs-6">
+        <div class="box">
+            <h1>Proyectos</h1>
+        </div>
+    </div>
+</div>
+<% @p.each do |pro|  %>
+	<div class="listado caja">
+		<b><%= pro.name %></b>
+		<p class="lisp" ><%=pro.description %></p>
+		<%= link_to "Editar",edit_project_path(pro.id),:class => "editar" %>
+	</div><br>
+<%end%>
+	<div class="listado izquierdo">
+	    <%= link_to 'Crear Nuevo', new_project_path %>
+	</div>	
+
+
+	
+</div>

@@ -1,0 +1,89 @@
+<div class="grid">
+	<div class="row space-top space-bot">
+			<h3 class="text-center"><%= @aim.name %></h3>
+	</div>
+	<div class="row space-bot">
+		<div class="c12">
+			<p class="note text-center"><%= @aim.description %>
+			<span class="right" style="margin-top:10px;margin-right:5px;"><%= link_to "Editar",edit_area_aim_path(@aim) %>  
+			</span>	
+				
+			</p>
+		</div>
+	</div>
+<div class="g1140 space-bot">
+	<div class="row space-top space-bot">
+			<h4 class="text-center">Tareas</h4>
+	</div>
+	<div class="row space-bot">
+		<div class="c12">
+			<% @labors.each do |l|  %>
+				<div class="listado caja"> 
+					<p class="note text-center">
+						<b class="left" style="margin-left:10px; font-size:200%;"> <%= link_to l.name,l %> </b><br>
+						<span class="right" style="margin-right:10px;">Inicio: <%=l.initiation.strftime("%m-%d-%Y")  %> Fin: <%=l.ending.strftime("%m-%d-%Y")  %></span>
+						<br>
+						<span class="left" style="margin-left:10px;"><%=l.description %></span><br>
+						
+						<span class="right" style="margin-top:-15px;margin-right:5px;"><%= link_to "Editar",edit_labor_path(l.id),:class => "editar" %></span>
+					</p>
+					
+					
+				</div><br>
+			<%end%>
+			
+			
+		</div>
+	</div>
+	<div class="row space-top space-bot">
+			<h5 class="text-center">Crear Tarea</h5>
+	</div>
+	<div align="center">
+		<%= form_for(@labor, :html => {:class => 'vform'}) do |l| %>
+	<% @labor.errors.full_messages.each do |message|%>
+		<div class="be-alert white">*<%= message %></div>
+		<%end%>
+		<fieldset>
+		<label>Tarea</label>
+			<%= l.text_field:name, placeholder: "Nombre"%>
+		</fieldset>		
+		<fieldset>
+		<label>Descripcion</label>
+		<%= l.text_area:description, placeholder: "Description Tarea"%>
+		</fieldset>		
+		<fieldset>
+		<label>Descripcion del indicador</label>
+			<%= l.text_field:indicator_description, placeholder: "Descripcion de Indicador"%>
+		</fieldset>		
+		<fieldset>
+		<label>Cantidad Indicador</label>
+				<%= l.text_field:indicator, placeholder: "Cantidad"%>
+		</fieldset>		
+		<fieldset>
+		<script>
+		  $(document).ready(function() {
+		    $("#labor_initiation").datepicker({ dateFormat: 'yy-mm-dd' });
+		   	$("#labor_ending").datepicker({ dateFormat: 'yy-mm-dd' });
+		  });
+		</script>
+		<label>Fecha Inicio</label>
+			<%= l.text_field:initiation, placeholder: "Fecha de Inicio"%>
+		</fieldset>		
+		<fieldset>
+		<label>Fecha Finalizacion</label>
+			<%= l.text_field:ending, placeholder: "Fecha de Finalizacion"%>
+		</fieldset>		
+		<fieldset>
+		<label>Cliente</label>
+		<%= l.collection_select :client_id, Client.all, :id,:name, {prompt: 'Seleccione Cliente'}, class:"form-control" %>
+		</fieldset>		
+		<%= l.hidden_field:area_aim_id, :value => @aim.id %>
+				
+		<div class="field">
+			<%= l.submit "Guardar", class:"btn large-padding be-red" %>
+		</div>
+	<%end%>
+	</div>
+</div>
+
+</div>

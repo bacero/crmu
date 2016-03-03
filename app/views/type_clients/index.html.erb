@@ -1,0 +1,26 @@
+<div class="grid">
+	<div class="row space-top space-bot">
+			<h2 class="text-center">Tipo Clientes</h2>
+		</div>
+	<div class="row space-bot">
+		<div class="c12">
+			<% @tc.each do |type|  %>
+				<p class="note text-left" ><b style="margin-left:15px;"><%= link_to type.name,type %></b>
+					<br>
+				<span style="margin-left:15px; color:black;">
+				 <%=type.description %>
+				 </span>
+					
+				</p>
+
+				
+			<%end%>
+		</div>
+
+	</div>
+	<div class="row space-bot">
+			<div class="c10 first"></div>
+			<div class="c2 last left"><p class="note text-center"><%= link_to 'Crear Nuevo', new_type_client_path %></p></div>
+		</div>
+</div>
+

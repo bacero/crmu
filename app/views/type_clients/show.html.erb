@@ -1,0 +1,53 @@
+<div class="grid">
+		<div class="row space-top space-bot">
+			<h2 class="text-center"><%= @tc.name %></h2>
+		</div>
+	<div class="row space-bot">
+		<div class="c12">
+			<p class="note text-center"><%= @tc.description %></p>
+			<span class="right" style="margin-top:-30px;margin-right:7px;"><%= link_to "Editar",edit_type_client_path(@tc) %></span>	
+				</p>
+		</div>
+		
+	</div>
+	<hr>
+		<div class="row space-bot">
+			<div class="c6 first">
+				<h5>Atributos Asignados</h5>
+				<ul class="circle">
+					
+				<% @caa.each do |cat|  
+					att = Property.where("id=#{cat.property_id}").select('name')
+					att.each do |a| %>
+						<li><%= a.name %></li>
+						
+					<%end%>
+				
+				<%end%>
+				</ul>
+			</div>
+			<div class="c6 last">
+				<h5>Agregar Atributos</h5>
+				<blockquote>
+				<%= form_for(@la) do |f| %>
+				<% @la.errors.full_messages.each do |message|%>
+				<div class="be-alert white">*<%= message %></div>
+				<%end%>
+				<% 
+					@att=Property.all
+					@att.each do |a| %>
+				      <div>
+				      <%= check_box_tag "property_id[]", a.id %> <%= a.name %> 
+						      </div>
+						  	<% end %>
+							<%= f.hidden_field:type_client_id, :value => @tc.id %>
+							
+							<div class="field">
+								<%= f.submit "Guardar", class:"btn large-padding be-red" %>
+							</div>
+						<%end%>
+				</blockquote>
+			</div>
+		</div>
+		<hr>
+</div>

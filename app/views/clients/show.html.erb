@@ -1,0 +1,96 @@
+<div class="grid">
+	<div class="row space-top space-bot">
+			<h2 class="text-center"> <%= @client.name %></h2>
+	</div>
+	<div class="row space-bot">
+			<div class="c4 first">
+				<p class="note text-center">
+					Identidad <br> <b style="font-size:150%;"><%=@client.identity %></b>
+				</p>
+			</div>
+			<div class="c4">
+				<p class="note text-center">
+					Telefono <br> <b style="font-size:150%;"><%=@client.telephone %></b>
+				</p>
+			</div>
+			<div class="c4 last">
+				<p class="note text-center">
+					Direccion <br> <b style="font-size:150%;"><%=@client.address %></b>
+				</p>
+			</div>
+			<span class="right" ><%= link_to "Editar",edit_client_path(@client),:class => "editar" %> 
+			</span>	
+			
+	</div>
+	<hr>
+	<div class="g960 space-bot">
+			<div class="row space-top space-bot">
+				<h4 class="text-center">ATRIBUTOS</h4>
+			</div>
+			<% @caa.each do |cat| %>
+				<div class="row space-bot">
+				<% att = Property.where("id=#{cat.property_id}").select('name')
+				att.each do |a| %>
+						<div class="c3 first" ><p class="note text-center" style=" background-color:#EBEAE8;"><b><%= a.name %></b></p></div>
+					<%end%>
+					<div class="c9 last"><p class="note text-left" style="font-size:120%;  padding-left:30px;"><%= cat.value %></p></div>
+				</div>
+			<%end%>
+	<hr>
+		<div class="row space-top space-bot">
+				<h5 class="text-center">AGREGAR ATRIBUTO</h5>
+		</div>
+		<div align='center'>
+			<%= form_for(@ca,:html=> {:class =>'hform'}) do |f| %>
+			<% @ca.errors.full_messages.each do |message|%>
+				<div class="be-alert white">*<%= message %></div>
+				<%end%>
+				<label>Atributo</label>
+					<%= f.collection_select :property_id, Property.all, :id,:name, {prompt: 'Seleccione Atributo'}%>
+				<label>Valor</label>
+					<%= f.text_field:value, placeholder: "Valor"%>
+				<%= f.hidden_field:client_id, :value => @client.id %>
+					
+				<div>
+					<%= f.submit "Guardar", class:"btn large-padding be-red" %>
+				</div>
+			<%end%>
+		</div>
+	</div>
+	<div class="row space-bot">
+		<hr>
+		<div class="row space-top space-bot">
+				<h4 class="text-center">ACTIVIDADES</h4>
+			</div>
+		<div align='center'>
+			<%= form_for(@act,:html=> {:class =>'hform'}) do |f| %>
+				Descripcion<br>
+				<%= f.text_area:description, placeholder: "descripcion",style:"width:100%; " %>
+				<%= f.hidden_field:client_id, :value => @client.id %>
+				<div>
+					<%= f.submit "Agregar Actividad", class:"btn large-padding be-red" %>
+				</div>
+			<%end%>
+		</div>
+	<div class="c12 last">
+				<div class="accordion">
+					<% 	@contador=0
+						@activites.each do |a|  
+						input = a.created_at
+						input=input.strftime("%y-%m-%d %H:%M") 
+						@contador=@contador+1
+
+						%>
+						
+						<section>
+							<a href="#acc<%=@contador%>" id="acc<%=@contador%>"><%= input %></a>
+							<p><%=a.description %>safdsafsadf</p>
+						</section>
+					<%end%>
+					
+					
+				</div>
+			</div>
+	</div>
+
+</div>

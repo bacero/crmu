@@ -1,0 +1,38 @@
+<div class="grid">
+		<div class="row space-top space-bot">
+			<h2 class="text-center"><%= name %></h2>
+		</div>
+	<div class="row space-bot" align="center">
+
+		<%= form_for(@client, :html => {:class => 'vform'}) do |f| %>
+		<% @client.errors.full_messages.each do |message|%>
+			<div class="be-alert white">*<%= message %></div>
+		<%end%>
+		<fieldset>
+		<label>Nombre</label>
+			<%= f.text_field:name, placeholder: "Nombre"%>
+		</fieldset>
+		<label>Identidad</label>
+			<%= f.text_field:identity, placeholder: "Nombre"%>
+		</fieldset>
+		<label>Telefono</label>
+			<%= f.text_field:telephone, placeholder: "Nombre"%>
+		</fieldset>
+		<label>Direccion</label>
+			<%= f.text_field:address, placeholder: "Nombre"%>
+		</fieldset>
+		<fieldset>
+			<label>Estado </label>
+			<%= f.collection_select :state_id, State.all, :id,:name, {prompt: 'Seleccione Estado'}%>
+		</fieldset>
+		<fieldset>
+			<label>Tipo cliente </label>
+			<%= f.collection_select :type_client_id, TypeClient.all, :id,:name, {prompt: 'Seleccione Tipo'} %>
+		</fieldset>
+		<div class="field">
+			<%= f.submit "Guardar", class:"btn large-padding be-red" %>
+		</div>
+		<%end%>
+	</div>
+
+</div>

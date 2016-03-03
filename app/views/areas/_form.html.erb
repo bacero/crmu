@@ -1,0 +1,22 @@
+<div style="width:60%; margin:0 auto;">
+<h1><%= name %></h1>
+<%= form_for(@area) do |f| %>
+	<% @area.errors.full_messages.each do |message|%>
+		<div class="be-alert white">*<%= message %></div>
+	<%end%>
+	<div class="field">
+		<%= f.text_field:name, placeholder: "Nombre", class:"form-control"%>
+	</div>
+	
+	<div class="field">
+		<%= f.text_area:description, placeholder: "Descripcion", class:"form-control"%>
+	</div>
+	<div class="field">
+		<%= f.text_field:creator, placeholder: "Creador", class:"form-control"%>
+	</div>
+	<div class="field">
+		<%= f.submit "Guardar", class:"btn large-padding be-red" %>
+	</div>
+
+<%end%>
+</div>

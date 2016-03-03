@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  kind: 1
+  labor_id: 
+
+two:
+  description: MyText
+  kind: 1
+  labor_id: 

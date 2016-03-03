@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  indicator: 1
+  indicator_description: MyText
+  ending: 2016-03-01
+  initiation: 2016-03-01
+  area_aim_id: 
+  project_id: 
+  state_id: 
+
+two:
+  name: MyString
+  description: MyText
+  indicator: 1
+  indicator_description: MyText
+  ending: 2016-03-01
+  initiation: 2016-03-01
+  area_aim_id: 
+  project_id: 
+  state_id: 

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CRM</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+  <%= csrf_meta_tags %>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+  <style>
+		.content{width: 100%; height: auto; background-color: #EBEAE8; padding: 30px 12px;}
+	.note {
+		background-color: #ffffff; 
+		padding: 10px 0; 
+		color: #333333; 
+				border-radius:5px; 
+		   -moz-border-radius:5px; 
+		-webkit-border-radius:5px;
+				box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+	       -moz-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+		-webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+	}
+	</style>
+</head>
+<body>
+	<div class="row">
+		<h1 class="text-center">FRUANDES CRM</h1>
+		<ul class="breadcrumb">
+			<li ><%= link_to "Inicio",root_path %></li><span class="divider">/</span>
+			<li ><%= link_to "Atributos",properties_path %></li><span class="divider">/</span>
+			<li ><%= link_to "Tipo Clientes",type_clients_path %></li><span class="divider">/</span>
+			<li ><%= link_to "Clientes",clients_path %></li><span class="divider">/</span>
+			<li ><%= link_to "Areas",areas_path %></li>	<span class="divider">/</span>
+		</ul>
+	</div>
+	<div class="content">
+		
+			<%= yield %>
+		
+	</div>
+	<div class="g960">
+		<div class="row space-bot">
+				<div class="c6 first">
+					<p>Developed by United Mozos</p>
+				</div>
+				<div class="c6 last text-right">
+					<p>FRUANDES CRM 2016 1.0<p>
+				</div>				
+			</div>
+	</div>
+
+	
+
+
+
+</body>
+</html>

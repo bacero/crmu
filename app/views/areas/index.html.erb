@@ -1,0 +1,20 @@
+<div class="grid">
+	<div class="row space-top space-bot">
+			<h2 class="text-center">AREAS</h2>
+	</div>
+	<div class="row space-bot">
+		<div class="c8 centered first">
+			<% @area.each do |a|  %>
+				<div class="listado caja">
+					<p class="note text-center" style="font-size:150%"><b><%= link_to a.name,a %></b></p>
+				</div><br>
+			<%end%>
+		</div>
+	</div>
+	<div class="row space-bot">
+				<div class="c1 centered first">
+				<p class="note text-center"><%= link_to 'Crear Nuevo', new_area_path %></p>
+				</div>
+	</div>
+	
+</div>

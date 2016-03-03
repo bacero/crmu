@@ -1,0 +1,89 @@
+<div class="grid">
+	<div class="row space-top space-bot">
+			<h3 class="text-center"><%= @area.name %></h3>
+	</div>
+	<div class="row space-bot">
+		<div class="c12">
+			<p class="note text-center"><%= @area.description %>
+			<span class="right" style="margin-top:10px;margin-right:5px;"><%= link_to "Editar",edit_area_path(@area),:class => "editar" %> 
+			</span>	
+				
+			</p>
+		</div>
+	</div>
+</div>
+<div class="grid" style="background-color:#ffffff;">
+		<div class="row space-bot">
+			<div class="c6 first">
+				<h5 class="text-center">Grupo de trabajo</h5>
+				<ul class="circle" style="margin-left:50px;">
+					
+					<% 	gru = AreaGroup.where("area_id=#{@area.id}").select('name')
+						gru.each do |g| %>
+							<li><%= g.name %></li>
+					    <%end%>
+				</ul>
+			</div>
+			<div class="c6 last">
+				<h5 class="text-center">Agregar participante</h5>
+				<blockquote>
+					<%= form_for(@group, :html => {:class => 'vform'}) do |g| %>
+					<% @group.errors.full_messages.each do |message|%>
+						<div class="be-alert white">*<%= message %></div>
+						<%end%>
+						<fieldset>
+						<label>Participante</label>
+							<%= g.text_field:name, placeholder: "Nombre"%>
+						</fieldset>
+						<%= g.hidden_field:area_id, :value => @area.id %>
+								
+						<div class="field">
+							<%= g.submit "Guardar"%>
+						</div>
+					<%end%>
+				</blockquote>
+			</div>
+		</div>
+</div>
+<div class="grid">
+	<div class="row space-top space-bot">
+			<h4 class="text-center">METAS</h4>
+	</div>
+	<div class="row">
+		<div class="row space-bot">
+			<div class="c8 centered first">
+				<% @aims.each do |m| %>
+					<p class="note text-center" style="font-size:150%;"><%= link_to m.name,m %> </p>
+				<%end%>
+				
+			</div>
+		</div>
+	</div>
+	<div class="row space-top space-bot">
+			<h5 class="text-center">AGRAGAR META</h5>
+	</div>
+	<div align="center">
+	<%= form_for(@aim, :html => {:class => 'vform'}) do |a| %>
+	<% @aim.errors.full_messages.each do |message|%>
+		<div class="be-alert white">*<%= message %></div>
+		<%end%>
+		<fieldset>
+		<label>Nombre</label>
+			<%= a.text_field:name, placeholder: "Nombre de Meta"%>
+		</fieldset>
+		<fieldset>
+		<label>Descripcion</label>
+			<%= a.text_area:description, placeholder: "Description de Meta"%>
+		</fieldset>
+		<%= a.hidden_field:area_id, :value => @area.id %>
+				
+		<div class="field">
+			<%= a.submit "Guardar", class:"btn large-padding be-red" %>
+		</div>
+	<%end%>
+	</div>	
+	
+</div>
+
+
+

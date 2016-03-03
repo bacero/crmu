@@ -1,0 +1,2 @@
+module LaborCommentsHelper
+end

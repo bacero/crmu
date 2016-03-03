@@ -1,0 +1,31 @@
+<div class="grid">
+		<div class="row space-top space-bot">
+			<h2 class="text-center"><%= name %></h2>
+		</div>
+	<div class="row space-bot" align="center">
+
+		<%= form_for(@tc, :html => {:class => 'vform'}) do |f| %>
+		<% @tc.errors.full_messages.each do |message|%>
+			<div class="be-alert white">*<%= message %></div>
+		<%end%>
+		<fieldset>
+		<label>Nombre</label>
+		<%= f.text_field:name, placeholder: "Nombre"%>
+		</fieldset>
+		<fieldset>
+			<label>Descripcion</label>
+			<%= f.text_area:description, placeholder: "description"%>
+		</fieldset>
+		<fieldset>
+			<label>Estado </label>
+			<%= f.collection_select :state_id, State.all, :id,:name, {prompt: 'Seleccione Estado'}%>
+		</fieldset>
+
+		<div class="field">
+			<%= f.submit "Guardar", class:"skyblue" %>
+		</div>
+
+		<%end%>
+	</div>
+
+</div>
